@@ -13,6 +13,8 @@ jobs:
         with:
           node-version: 14
 
+      - run: sudo apt update && sudo apt install redis
+      - run: sudo systemctl start redis
       - run: npm install
       - run: npm run test:full
       - run: npm run build
