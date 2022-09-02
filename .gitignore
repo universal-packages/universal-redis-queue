@@ -1,0 +1,21 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# Ignorable
+/node_modules
+/coverage
+/dist
+/log
+/build
+/logs
+/playground
+.tsbuildinfo
+test.ts
+test.js
+
+# misc
+.vscode
+.DS_Store
+npm-debug.log
+yarn-error.log
+.console_history
+tmp
