@@ -1,7 +1,7 @@
 {
   "name": "@universal-packages/universal-redis-queue",
   "version": "1.0.0",
-  "description": "Redis identifiable pubsub system",
+  "description": "Redis multiprocess queue system",
   "author": "David De Anda <david@universal-packages.com> (https://github.com/universal-packages)",
   "license": "MIT",
   "main": "index.js",
