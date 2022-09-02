@@ -1,8 +1,8 @@
 # Redis Priority Queue
 
 [![npm version](https://badge.fury.io/js/@universal-packages%2Funiversal-redis-queue.svg)](https://www.npmjs.com/package/@universal-packages/universal-redis-queue)
-[![Testing](https://github.com/universal-packages/universal-universal-redis-queue/actions/workflows/testing.yml/badge.svg)](https://github.com/universal-packages/universal-universal-redis-queue/actions/workflows/testing.yml)
-[![codecov](https://codecov.io/gh/universal-packages/universal-universal-redis-queue/branch/main/graph/badge.svg?token=CXPJSN8IGL)](https://codecov.io/gh/universal-packages/universal-universal-redis-queue)
+[![Testing](https://github.com/universal-packages/universal-redis-queue/actions/workflows/testing.yml/badge.svg)](https://github.com/universal-packages/universal-redis-queue/actions/workflows/testing.yml)
+[![codecov](https://codecov.io/gh/universal-packages/universal-redis-queue/branch/main/graph/badge.svg?token=CXPJSN8IGL)](https://codecov.io/gh/universal-packages/universal-redis-queue)
 
 Redis priority queue system for [redis](https://github.com/redis/node-redis).
 
