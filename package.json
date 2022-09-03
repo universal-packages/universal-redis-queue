@@ -1,12 +1,12 @@
 {
-  "name": "@universal-packages/universal-redis-queue",
-  "version": "1.1.0",
+  "name": "@universal-packages/redis-queue",
+  "version": "1.0.0",
   "description": "Redis multiprocess queue system",
   "author": "David De Anda <david@universal-packages.com> (https://github.com/universal-packages)",
   "license": "MIT",
   "main": "index.js",
   "types": "index.d.ts",
-  "repository": "git://git@github.com/universal-packages/universal-universal-redis-queue.git",
+  "repository": "git://git@github.com/universal-packages/universal-redis-queue.git",
   "scripts": {
     "build": "tsc --p tsconfig.dis.json",
     "test": "jest --watch",
