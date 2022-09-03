@@ -10,6 +10,7 @@ Redis queue system for [redis](https://github.com/redis/node-redis).
 
 ```shell
 npm install @universal-packages/universal-redis-queue
+npm install redis
 ```
 
 # RedisQueue
