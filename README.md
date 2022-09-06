@@ -1,7 +1,7 @@
 # Redis Queue
 
-[![npm version](https://badge.fury.io/js/@universal-packages%2Funiversal-redis-queue.svg)](https://www.npmjs.com/package/@universal-packages/universal-redis-queue)
-[![Testing](https://github.com/universal-packages/universal-redis-queue/actions/workflows/testing.yml/badge.svg)](https://github.com/universal-packages/universal-redis-queue/actions/workflows/testing.yml)
+[![npm version](https://badge.fury.io/js/@universal-packages%2Fredis-queue.svg)](https://www.npmjs.com/package/@universal-packages/redis-queue)
+[![Testing](https://github.com/universal-packages/universal-redis-queue/actions/workflows/testing.yml/badge.svg)](https://github.com/universal-packages/redis-queue/actions/workflows/testing.yml)
 [![codecov](https://codecov.io/gh/universal-packages/universal-redis-queue/branch/main/graph/badge.svg?token=CXPJSN8IGL)](https://codecov.io/gh/universal-packages/universal-redis-queue)
 
 Redis queue system for [redis](https://github.com/redis/node-redis).
@@ -9,7 +9,7 @@ Redis queue system for [redis](https://github.com/redis/node-redis).
 ## Install
 
 ```shell
-npm install @universal-packages/universal-redis-queue
+npm install @universal-packages/redis-queue
 npm install redis
 ```
 
@@ -18,7 +18,7 @@ npm install redis
 An instance of `RedisQueue` allows you to start enqueing items to be retrieved later from anywhere and at the right time.
 
 ```js
-import { RedisQueue } from '@universal-packages/universal-redis-queue'
+import { RedisQueue } from '@universal-packages/redis-queue'
 
 const redisQueue = new RedisQueue({ identifier: 'my-app' })
 
