@@ -10,7 +10,8 @@
   "scripts": {
     "build": "tsc --p tsconfig.dis.json",
     "test": "jest --watch",
-    "test:full": "jest --coverage --verbose"
+    "test:full": "jest --coverage --verbose",
+    "test:clear": "jest --clearCache"
   },
   "dependencies": {
     "ms": "^2.1.3",

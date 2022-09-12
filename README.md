@@ -42,12 +42,14 @@ console.log(item.payload)
 `RedisQueue` takes the same [options](https://github.com/redis/node-redis/blob/master/docs/client-configuration.md) as the redis client.
 
 Additionally takes the following ones:
-  - `client` `RedisClient`
-    If you already have a client working in your app you can pass the instance here to not connect another client inside the `RedisQueue` instance.
-  - `identifier` `String`
-    This will be prepended to all redis keys used internally to handle the queue, so one can debug easier.
+
+- `client` `RedisClient`
+  If you already have a client working in your app you can pass the instance here to not connect another client inside the `RedisQueue` instance.
+- `identifier` `String`
+  This will be prepended to all redis keys used internally to handle the queue, so one can debug easier.
 
 ## .connect()
+
 If you are not passing your own client in options you will need to tell the `RedisQueue` to connect its internal client.
 
 ```js
@@ -55,6 +57,7 @@ await redisQueue.connect()
 ```
 
 ## .disconnect()
+
 If you are not passing your own client in options you will need to tell the `RedisQueue` to disconnect its internal client when you no loger need it.
 
 ```js
@@ -62,6 +65,7 @@ await redisQueue.disconnect()
 ```
 
 ## .enqueue()
+
 Enqueues a `payload` with the given `queue`. Return the metadata related to the enqueued tiem.
 
 ```js
@@ -82,6 +86,7 @@ console.log(item)
 ```
 
 ### options
+
 You can also pass options related to where an item should be available to dequeue. `At` takes priority over `wait`.
 
 - **`at`** `Date`
@@ -90,11 +95,11 @@ You can also pass options related to where an item should be available to dequeu
   expresed with human languaje like `2 hours` or `1 day` and the enqueue item will not be available before current time plus wait time.
 
 ```js
-await redisQueue.enqueue({ data: '❨╯°□°❩╯︵┻━┻' }, 'normal', {  })
-
+await redisQueue.enqueue({ data: '❨╯°□°❩╯︵┻━┻' }, 'normal', {})
 ```
 
 ## .dequeue()
+
 Dequeues an item from the given queue if it is ready to be dequeued.
 
 ```js
