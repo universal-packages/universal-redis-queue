@@ -8,22 +8,22 @@ export default class RedisQueue extends EventEmitter {
   public readonly options: RedisQueueOptions
   public readonly client: RedisClientType<RedisModules, RedisFunctions, RedisScripts>
 
-  private isPubMine = false
+  private isClientMine = false
   private readonly DEFAULT_IDENTIFIER = 'priority-queue'
 
   public constructor(options?: RedisQueueOptions) {
     super()
     this.options = { ...options }
-    this.isPubMine = !this.options.client
-    this.client = this.isPubMine ? createClient(this.options) : this.options.client
+    this.isClientMine = !this.options.client
+    this.client = this.isClientMine ? createClient(this.options) : this.options.client
   }
 
   public async connect(): Promise<void> {
-    if (this.isPubMine) await this.client.connect()
+    if (this.isClientMine) await this.client.connect()
   }
 
   public async disconnect(): Promise<void> {
-    if (this.isPubMine) await this.client.disconnect()
+    if (this.isClientMine) await this.client.disconnect()
   }
 
   public async clear(): Promise<void> {
@@ -36,18 +36,18 @@ export default class RedisQueue extends EventEmitter {
   public async enqueue(payload: Record<string, any>, queue: string, options?: { at?: Date; wait?: string }): Promise<QueueItem> {
     const id = uuidV4()
     const currentTime = new Date().getTime()
-    const dequeuetimestamp = options?.wait ? currentTime + ms(options.wait) : options?.at?.getTime() || currentTime
-    const queueItem: QueueItem = { id, payload, queue, enqueuedAt: currentTime, dequeueAfter: dequeuetimestamp }
+    const dequeueTimestamp = options?.wait ? currentTime + ms(options.wait) : options?.at?.getTime() || currentTime
+    const queueItem: QueueItem = { id, payload, queue, enqueuedAt: currentTime, dequeueAfter: dequeueTimestamp }
     const serializedQueueItem = JSON.stringify(queueItem)
     const redisMulti = this.client.multi()
 
     // Here we keep a sorted list of all dequeue timestamps of this category
-    // so the more earlier the timestamp is the most at the beginign of the queue will be
-    redisMulti.zAdd(this.getQueueKey(queue), { score: dequeuetimestamp, value: String(dequeuetimestamp) })
+    // so the more earlier the timestamp is the most at the beginning of the queue will be
+    redisMulti.zAdd(this.getQueueKey(queue), { score: dequeueTimestamp, value: String(dequeueTimestamp) })
 
     // Here we keep all items ids for its dequeue timestamp, this is because several items could have
-    // the same dequeue time and all of them should be dequeue idealy not later than that dequeue time
-    redisMulti.rPush(this.getTimestampKey(queue, dequeuetimestamp), id)
+    // the same dequeue time and all of them should be dequeue ideally not later than that dequeue time
+    redisMulti.rPush(this.getTimestampKey(queue, dequeueTimestamp), id)
 
     // We keep the item by its id so we can reference the data later
     redisMulti.set(this.getItemKey(queueItem.id), serializedQueueItem)
@@ -57,18 +57,18 @@ export default class RedisQueue extends EventEmitter {
     return queueItem
   }
 
-  /** Removes the next item avaliable by its timestamp to be removed and returns the items data */
+  /** Removes the next item available by its timestamp to be removed and returns the items data */
   public async dequeue(queue: string): Promise<QueueItem> {
-    // We remove the timestamp we are working on, at the end if the timestamp does have other realted
-    // items to be dequeued we reinert this score to be processed in another dequeuement.
+    // We remove the timestamp we are working on, at the end if the timestamp does have other related
+    // items to be dequeued we re-insert this score to be processed in another dequeue.
     const nextTimestamp = await this.client.zPopMin(this.getQueueKey(queue))
 
     if (nextTimestamp) {
       const currentTime = new Date().getTime()
 
-      // We only process items that are ready to be poped
+      // We only process items that are ready to be popped
       if (nextTimestamp.score < currentTime) {
-        // We pop the first id contained in the timestamplist
+        // We pop the first id contained in the timestamp list
         const queueItemId = await this.client.lPop(this.getTimestampKey(queue, nextTimestamp.value))
 
         if (queueItemId) {
