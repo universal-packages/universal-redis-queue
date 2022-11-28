@@ -35,7 +35,7 @@ export default class RedisQueue extends EventEmitter {
   /** Enqueue a new item and set it ready to be dequeued at the right moment by its timestamp */
   public async enqueue(payload: Record<string, any>, queue: string, options?: { at?: Date; wait?: string }): Promise<QueueItem> {
     const id = uuidV4()
-    const currentTime = new Date().getTime()
+    const currentTime = Date.now()
     const dequeueTimestamp = options?.wait ? currentTime + ms(options.wait) : options?.at?.getTime() || currentTime
     const queueItem: QueueItem = { id, payload, queue, enqueuedAt: currentTime, dequeueAfter: dequeueTimestamp }
     const serializedQueueItem = JSON.stringify(queueItem)
@@ -64,7 +64,7 @@ export default class RedisQueue extends EventEmitter {
     const nextTimestamp = await this.client.zPopMin(this.getQueueKey(queue))
 
     if (nextTimestamp) {
-      const currentTime = new Date().getTime()
+      const currentTime = Date.now()
 
       // We only process items that are ready to be popped
       if (nextTimestamp.score < currentTime) {

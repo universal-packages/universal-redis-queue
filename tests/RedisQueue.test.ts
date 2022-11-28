@@ -44,7 +44,7 @@ describe('RedisQueue', (): void => {
   })
 
   it('enqueues a popable that can be retrieved at time', async (): Promise<void> => {
-    const enqueuedItem = await redisQueue.enqueue({ test: true }, 'normal', { at: new Date(new Date().getTime() + 1000) })
+    const enqueuedItem = await redisQueue.enqueue({ test: true }, 'normal', { at: new Date(Date.now() + 1000) })
     let item = await redisQueue.dequeue('normal')
 
     expect(item).toBeUndefined()

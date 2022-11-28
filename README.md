@@ -15,7 +15,7 @@ npm install redis
 
 # RedisQueue
 
-An instance of `RedisQueue` allows you to start enqueing items to be retrieved later from anywhere and at the right time.
+An instance of `RedisQueue` allows you to start enqueuing items to be retrieved later from anywhere and at the right time.
 
 ```js
 import { RedisQueue } from '@universal-packages/redis-queue'
@@ -125,7 +125,7 @@ This library is developed in TypeScript and shipped fully typed.
 
 ## Contributing
 
-The development of this library in the open on GitHub, and we are grateful to the community for contributing bugfixes and improvements. Read below to learn how you can take part in improving this library.
+The development of this library happens in the open on GitHub, and we are grateful to the community for contributing bugfixes and improvements. Read below to learn how you can take part in improving this library.
 
 - [Code of Conduct](./CODE_OF_CONDUCT.md)
 - [Contributing Guide](./CONTRIBUTING.md)
