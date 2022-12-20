@@ -12,17 +12,15 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
+          registry-url: https://registry.npmjs.org/
 
-      - run: sudo apt update && sudo apt install redis
-      - run: sudo systemctl start redis
       - run: npm install
       - run: npm run test:full
       - run: npm run build
       - run: cp package.json dist
       - run: cp README.md dist
-
-      - uses: JS-DevTools/npm-publish@v1
-        with:
-          package: dist/package.json
-          access: public
-          token: ${{ secrets.NPM_TOKEN }}
+      - run: cp LICENSE.md dist
+      - run: npm publish --access public
+        working-directory: ./dist
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
