@@ -13,7 +13,7 @@ npm install @universal-packages/redis-queue
 npm install redis
 ```
 
-# RedisQueue
+## RedisQueue
 
 An instance of `RedisQueue` allows you to start enqueuing items to be retrieved later from anywhere and at the right time.
 
@@ -37,7 +37,7 @@ console.log(item.payload)
 
 ```
 
-## Options
+### Options
 
 `RedisQueue` takes the same [options](https://github.com/redis/node-redis/blob/master/docs/client-configuration.md) as the redis client.
 
@@ -48,7 +48,9 @@ Additionally takes the following ones:
 - `identifier` `String`
   This will be prepended to all redis keys used internally to handle the queue, so one can debug easier.
 
-## .connect()
+### Instance methods
+
+#### **`connect()`**
 
 If you are not passing your own client in options you will need to tell the `RedisQueue` to connect its internal client.
 
@@ -56,17 +58,17 @@ If you are not passing your own client in options you will need to tell the `Red
 await redisQueue.connect()
 ```
 
-## .disconnect()
+#### **`disconnect()`**
 
-If you are not passing your own client in options you will need to tell the `RedisQueue` to disconnect its internal client when you no loger need it.
+If you are not passing your own client in options you will need to tell the `RedisQueue` to disconnect its internal client when you no logger need it.
 
 ```js
 await redisQueue.disconnect()
 ```
 
-## .enqueue()
+#### **`enqueue(payload: Object, queue: string, [options])`**
 
-Enqueues a `payload` with the given `queue`. Return the metadata related to the enqueued tiem.
+Enqueues a `payload` with the given `queue`. Return the metadata related to the enqueued item.
 
 ```js
 await redisQueue.enqueue({ data: '❨╯°□°❩╯︵┻━┻' }, 'low')
@@ -85,20 +87,20 @@ console.log(item)
 // >    queue: 'normal' }
 ```
 
-### options
+#### options
 
 You can also pass options related to where an item should be available to dequeue. `At` takes priority over `wait`.
 
 - **`at`** `Date`
   The item will not be available before this date.
 - **`wait`** `String`
-  expresed with human languaje like `2 hours` or `1 day` and the enqueue item will not be available before current time plus wait time.
+  expressed with human language like `2 hours` or `1 day` and the enqueue item will not be available before current time plus wait time.
 
 ```js
 await redisQueue.enqueue({ data: '❨╯°□°❩╯︵┻━┻' }, 'normal', {})
 ```
 
-## .dequeue()
+#### **`dequeue(queue: string)`**
 
 Dequeues an item from the given queue if it is ready to be dequeued.
 

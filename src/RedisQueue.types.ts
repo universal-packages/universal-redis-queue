@@ -12,3 +12,8 @@ export interface QueueItem {
   enqueuedAt: number
   dequeueAfter: number
 }
+
+export interface EnqueueOptions {
+  at?: Date
+  wait?: string
+}

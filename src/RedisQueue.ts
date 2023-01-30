@@ -1,6 +1,6 @@
 import ms from 'ms'
 import { v4 as uuidV4 } from 'uuid'
-import { QueueItem, RedisQueueOptions } from './RedisQueue.types'
+import { EnqueueOptions, QueueItem, RedisQueueOptions } from './RedisQueue.types'
 import { createClient, RedisClientType, RedisFunctions, RedisModules, RedisScripts } from 'redis'
 import EventEmitter from 'events'
 
@@ -33,7 +33,7 @@ export default class RedisQueue extends EventEmitter {
   }
 
   /** Enqueue a new item and set it ready to be dequeued at the right moment by its timestamp */
-  public async enqueue(payload: Record<string, any>, queue: string, options?: { at?: Date; wait?: string }): Promise<QueueItem> {
+  public async enqueue(payload: Record<string, any>, queue: string, options?: EnqueueOptions): Promise<QueueItem> {
     const id = uuidV4()
     const currentTime = Date.now()
     const dequeueTimestamp = options?.wait ? currentTime + ms(options.wait) : options?.at?.getTime() || currentTime
