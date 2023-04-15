@@ -9,8 +9,6 @@
     "assumeChangesOnlyAffectDirectDependencies": false,
     // "baseUrl": ".",
     "build": false,
-    "charset": "utf8",
-    "checkJs": false,
     "composite": false,
     "declaration": true,
     "declarationMap": false,
