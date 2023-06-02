@@ -1,8 +1,9 @@
-import ms from 'ms'
-import { v4 as uuidV4 } from 'uuid'
-import { EnqueueOptions, QueueItem, RedisQueueOptions } from './RedisQueue.types'
-import { createClient, RedisClientType, RedisFunctions, RedisModules, RedisScripts } from 'redis'
 import EventEmitter from 'events'
+import ms from 'ms'
+import { RedisClientType, RedisFunctions, RedisModules, RedisScripts, createClient } from 'redis'
+import { v4 as uuidV4 } from 'uuid'
+
+import { EnqueueOptions, QueueItem, RedisQueueOptions } from './RedisQueue.types'
 
 export default class RedisQueue extends EventEmitter {
   public readonly options: RedisQueueOptions
