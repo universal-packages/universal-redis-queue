@@ -34,7 +34,6 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "listEmittedFiles": false,
     "listFiles": false,
-    "locale": "en",
     // "mapRoot": "",
     "maxNodeModuleJsDepth": 0,
     "module": "CommonJS",
