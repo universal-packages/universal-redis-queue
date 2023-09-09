@@ -6,7 +6,7 @@
   "license": "MIT",
   "main": "index.js",
   "types": "index.d.ts",
-  "repository": "git://git@github.com/universal-packages/universal-redis-queue.git",
+  "repository": "git://git@github.com:universal-packages/universal-redis-queue.git",
   "scripts": {
     "build": "tsc --p tsconfig.dis.json",
     "test": "jest --watch",
