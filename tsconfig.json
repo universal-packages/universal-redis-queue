@@ -65,7 +65,6 @@
     "resolveJsonModule": true,
     // "rootDir": "./src",
     // "rootDirs": [],
-    "showConfig": false,
     "skipLibCheck": true,
     "sourceMap": true,
     // "sourceRoot": ".",
