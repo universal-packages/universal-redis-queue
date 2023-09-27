@@ -11,7 +11,7 @@ afterAll(async (): Promise<void> => {
   await redisQueue.disconnect()
 })
 
-describe('RedisQueue', (): void => {
+describe(RedisQueue, (): void => {
   it('enqueues a popable item and retrieve them by priority', async (): Promise<void> => {
     const enqueuedItem1 = await redisQueue.enqueue({ test: 1 }, 'normal')
     const enqueuedItem2 = await redisQueue.enqueue({ test: 2 }, 'high')
