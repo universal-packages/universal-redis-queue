@@ -42,6 +42,8 @@ jobs:
       - run: npm install
       - run: git config --global user.email "omarandstuff@gmail.com"
       - run: git config --global user.name "David De Anda"
+      - run: sudo apt update && sudo apt install redis
+      - run: sudo systemctl start redis
       - run: npm run update-dependents
         env:
           GITHUB_TOKEN: ${{ secrets.MAINTENANCE_TOKEN }}
