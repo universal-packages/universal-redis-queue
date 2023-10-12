@@ -38,15 +38,8 @@
     "transform": {
       "^.+\\.(ts|tsx)$": "ts-jest"
     },
-    "testRegex": "(/tests/.*\\.test\\.ts?)$",
     "collectCoverageFrom": [
       "src/**/*.ts"
-    ],
-    "setupFilesAfterEnv": [
-      "<rootDir>/tests/setupTests.ts"
-    ],
-    "watchPathIgnorePatterns": [
-      "<rootDir>/tmp"
     ]
   },
   "prettier": {
