@@ -1,11 +1,10 @@
-import EventEmitter from 'events'
 import ms from 'ms'
 import { RedisClientType, RedisFunctions, RedisModules, RedisScripts, createClient } from 'redis'
 import { v4 as uuidV4 } from 'uuid'
 
 import { EnqueueOptions, QueueItem, RedisQueueOptions } from './RedisQueue.types'
 
-export default class RedisQueue extends EventEmitter {
+export default class RedisQueue {
   public readonly options: RedisQueueOptions
   public readonly client: RedisClientType<RedisModules, RedisFunctions, RedisScripts>
 
@@ -13,7 +12,6 @@ export default class RedisQueue extends EventEmitter {
   private readonly DEFAULT_IDENTIFIER = 'priority-queue'
 
   public constructor(options?: RedisQueueOptions) {
-    super()
     this.options = { ...options }
     this.isClientMine = !this.options.client
     this.client = this.isClientMine ? createClient(this.options) : this.options.client
