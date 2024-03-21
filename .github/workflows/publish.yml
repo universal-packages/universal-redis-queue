@@ -31,17 +31,3 @@ jobs:
         working-directory: ./dist
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-  update-dependents:
-    name: Update Dependents
-    runs-on: ubuntu-latest
-    needs: build-and-publish
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-      - run: npm install
-      - run: git config --global user.email "omarandstuff@gmail.com"
-      - run: git config --global user.name "David De Anda"
-      - run: npm run update-dependents
-        env:
-          GITHUB_TOKEN: ${{ secrets.MAINTENANCE_TOKEN }}

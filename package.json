@@ -12,8 +12,7 @@
     "test": "jest --watch",
     "test:full": "jest --coverage --verbose",
     "test:clear": "jest --clearCache",
-    "format": "prettier --write \"./{src,tests}/**/*.{ts,tsx,js,jsx,json}\"",
-    "update-dependents": "umaintenance update-dependents"
+    "format": "prettier --write \"./{src,tests}/**/*.{ts,tsx,js,jsx,json}\""
   },
   "dependencies": {
     "ms": "^2.1.3",
