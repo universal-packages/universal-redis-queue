@@ -1,0 +1,28 @@
+name: Update universal dependencies
+
+on:
+  schedule:
+    - cron: '0 * * * *'
+
+jobs:
+  update-universal-dependencies:
+    name: Update universal dependencies
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.MAINTENANCE_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          registry-url: https://registry.npmjs.org/
+
+      - run: npm install
+
+      - run: npm run test:full
+
+      - run: git config --global user.email "${{ secrets.COMMITTER_EMAIL }}"
+      - run: git config --global user.name "${{ secrets.COMMITTER_NAME }}"
+
+      - run: npm run update-universal-dependencies
