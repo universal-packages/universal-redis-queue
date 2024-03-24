@@ -19,7 +19,7 @@ jobs:
       - run: sudo apt update && sudo apt install redis
       - run: sudo systemctl start redis
       - run: npm install
-      - run: npm run test:full
+      - run: npm run test:coverage
       - run: npm run build
       - run: cp package.json dist
       - run: cp README.md dist
