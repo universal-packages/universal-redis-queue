@@ -8,7 +8,6 @@
     "alwaysStrict": false,
     "assumeChangesOnlyAffectDirectDependencies": false,
     // "baseUrl": ".",
-    "build": false,
     "composite": false,
     "declaration": true,
     "declarationMap": false,
